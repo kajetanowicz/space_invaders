@@ -3,7 +3,7 @@ describe SpaceInvaders::RadarSample do
   let(:sample_path) { "#{__dir__}../../../data/radar_samples/simple.txt" }
 
   describe '.from_file' do
-    it 'builds map from a file content' do
+    it 'builds radar sample from a file content' do
       expect(subject).to be_a(described_class)
     end
   end

@@ -1,19 +1,11 @@
 module SpaceInvaders
-  class RadarSample
+  class Alien
     def self.from_file(filepath, parser = AsciiParser)
       new(parser.parse(File.read(File.expand_path(filepath))))
     end
 
     def initialize(bitmap)
       @bitmap = bitmap
-    end
-
-    def width
-      @bitmap.first.size
-    end
-
-    def height
-      @bitmap.size
     end
   end
 end
