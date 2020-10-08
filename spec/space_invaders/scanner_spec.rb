@@ -1,38 +1,26 @@
 describe SpaceInvaders::Scanner do
-  subject(:scanner) { described_class.new(radar, alien) }
+  subject(:scanner) { described_class.new(radar_sample, aliens) }
 
-  let(:alien) { SpaceInvaders::Alien.from_file(alien_path) }
-
-  let(:radar) { SpaceInvaders::RadarSample.from_file(radar_sample_path) }
-  let(:radar_sample_path) { "#{__dir__}../../../data/radar_samples/simple.txt" }
-
-  def area_for(top_left_x, top_left_y, bottom_right_x, bottom_right_y)
-    SpaceInvaders::Area.new(
-      radar,
-      SpaceInvaders::Point.new(top_left_x, top_left_y),
-      SpaceInvaders::Point.new(bottom_right_x, bottom_right_y)
-    )
+  let(:aliens) do
+    [
+      SpaceInvaders::Alien.from_file("#{__dir__}../../../data/aliens/simple.txt"),
+      SpaceInvaders::Alien.from_file("#{__dir__}../../../data/aliens/cross.txt"),
+      SpaceInvaders::Alien.from_file("#{__dir__}../../../data/aliens/square.txt"),
+    ]
   end
 
-  describe '#scan' do
-    subject { scanner.scan }
+  let(:radar_sample) do
+    SpaceInvaders::RadarSample.from_file("#{__dir__}../../../data/radar_samples/combined.txt")
+  end
 
-    context 'simple example' do
-      let(:alien_path) { "#{__dir__}../../../data/aliens/simple.txt" }
-      let(:radar_sample_path) { "#{__dir__}../../../data/radar_samples/simple.txt" }
-      it { is_expected.to eq [area_for(6, 3, 8, 5)] }
+  describe '#detect' do
+    it 'returns an array of Matches' do
+      expect(scanner.detect).to be_a(Array)
+      expect(scanner.detect.first).to be_a(SpaceInvaders::Match)
     end
 
-    context 'alien like a cross' do
-      let(:alien_path) { "#{__dir__}../../../data/aliens/cross.txt" }
-      let(:radar_sample_path) { "#{__dir__}../../../data/radar_samples/simple.txt" }
-      it { is_expected.to eq [area_for(6, 3, 8, 5)] }
-    end
-
-    context 'square aliens' do
-      let(:alien_path) { "#{__dir__}../../../data/aliens/square.txt" }
-      let(:radar_sample_path) { "#{__dir__}../../../data/radar_samples/squares.txt" }
-      it { is_expected.to eq [area_for(3, 2, 9, 8), area_for(29, 12, 35, 18)] }
+    it 'returns matches for all aliens' do
+      expect(scanner.detect.count).to eq 8
     end
   end
 end

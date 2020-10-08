@@ -6,6 +6,7 @@ describe SpaceInvaders::Alien do
 
 
   describe '#present?' do
+    # TODO
     let(:radar) { SpaceInvaders::RadarSample.from_file(radar_sample_path) }
     let(:radar_sample_path) { "#{__dir__}../../../data/radar_samples/simple.txt" }
     let(:area) do
