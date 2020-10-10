@@ -1,3 +1,5 @@
+require 'space_invaders'
+
 describe SpaceInvaders::AsciiParser do
   describe '.parse' do
     let(:ascii) do
@@ -19,8 +21,15 @@ describe SpaceInvaders::AsciiParser do
     end
 
     context 'when input contains invalid characters' do
+      let(:input) do
+        <<~ASCII
+          -----oooo-oo
+          ---~--------
+          --o---o-----
+        ASCII
+      end
       it 'raises an exception' do
-        expect { described_class.parse('invalid input') }.to raise_error(StandardError, /Invalid character 'i'/)
+        expect { described_class.parse(input) }.to raise_error(StandardError, /Invalid character '~' .* at 2:4/)
       end
     end
   end
