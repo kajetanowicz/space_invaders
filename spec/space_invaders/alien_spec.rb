@@ -1,8 +1,7 @@
 require 'space_invaders'
 
 describe SpaceInvaders::Alien do
-  subject(:alien) { described_class.from_file(pattern_path) }
-  let(:pattern_path) { "#{__dir__}../../../data/aliens/simple.txt" }
+  subject(:alien) { described_class.from_string("ooo\nooo\nooo") }
   let(:detector) { double('Detector') }
   let(:area) { double('Area') }
 
