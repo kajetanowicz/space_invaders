@@ -5,16 +5,16 @@ module SpaceInvaders
       @aliens = aliens
     end
 
-    def detect
-      @aliens.map { |alien| locate_positions(alien) }.flatten
+    def detect(detector = Detectors::Basic)
+      @aliens.map { |alien| locate_positions(alien, detector) }.flatten
     end
 
     private
 
-    def locate_positions(alien)
+    def locate_positions(alien, detector)
       [].tap do |matches|
         @radar_sample.each_area(alien.width, alien.height) do |area|
-          matches << Match.new(alien, area) if alien.present?(area)
+          matches << Match.new(alien, area) if alien.present?(area, detector)
         end
       end
     end
