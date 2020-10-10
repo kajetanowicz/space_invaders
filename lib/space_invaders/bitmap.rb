@@ -1,7 +1,11 @@
 module SpaceInvaders
   class Bitmap
-    def self.from_file(filepath, parser = AsciiParser)
-      new(parser.parse(File.read(File.expand_path(filepath))))
+    def self.from_file(filepath)
+      from_string(File.read(File.expand_path(filepath)))
+    end
+
+    def self.from_string(input, parser = AsciiParser)
+      new(parser.parse(input))
     end
 
     def initialize(bitmap)

@@ -11,6 +11,20 @@ describe SpaceInvaders::Bitmap do
     end
   end
 
+  describe '.from_string' do
+    let(:input) do
+      <<~ASCII
+        ---ooo---
+        ---------
+        ooooooooo
+      ASCII
+    end
+
+    it 'builds bitmap from ascii input' do
+      expect(described_class.from_string(input)).to be_a(described_class)
+    end
+  end
+
   describe '#bit_at' do
     it 'returns bit at given coordinate' do
       expect(bitmap.bit_at(1, 0)).to eq true
