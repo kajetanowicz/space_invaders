@@ -5,7 +5,7 @@ module SpaceInvaders
       @aliens = aliens
     end
 
-    def detect(detector = Detectors::Basic)
+    def detect(detector = Detectors::Basic.new)
       @aliens.map { |alien| locate_positions(alien, detector) }.flatten
     end
 

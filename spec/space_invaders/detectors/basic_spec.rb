@@ -41,7 +41,7 @@ describe SpaceInvaders::Detectors::Basic do
     end
 
     it 'detects the alien' do
-      expect(described_class.present?(alien, area)).to eq true
+      expect(described_class.new.present?(alien, area)).to eq true
     end
   end
 
@@ -60,7 +60,7 @@ describe SpaceInvaders::Detectors::Basic do
     end
 
     it 'detects the alien' do
-      expect(described_class.present?(alien, area)).to eq true
+      expect(described_class.new.present?(alien, area)).to eq true
     end
   end
 
@@ -79,7 +79,7 @@ describe SpaceInvaders::Detectors::Basic do
     end
 
     it 'doesnt detect the alien' do
-      expect(described_class.present?(alien, area)).to eq false
+      expect(described_class.new.present?(alien, area)).to eq false
     end
   end
 
@@ -98,7 +98,7 @@ describe SpaceInvaders::Detectors::Basic do
     end
 
     it 'doesnt detect the alien' do
-      expect(described_class.present?(alien, area)).to eq false
+      expect(described_class.new.present?(alien, area)).to eq false
     end
   end
 end

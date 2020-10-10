@@ -13,7 +13,7 @@ describe SpaceInvaders::Alien do
 
     context 'when detector is not provided' do
       it 'uses the default one' do
-        expect(SpaceInvaders::Detectors::Basic).to receive(:present?).with(alien, area)
+        expect_any_instance_of(SpaceInvaders::Detectors::Basic).to receive(:present?).with(alien, area)
         alien.present?(area)
       end
     end
