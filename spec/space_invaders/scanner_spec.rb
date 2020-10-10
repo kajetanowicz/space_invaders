@@ -37,8 +37,20 @@ describe SpaceInvaders::Scanner do
         SpaceInvaders::RadarSample.from_file("#{__dir__}../../../data/radar_samples/large.txt")
       end
 
-      it 'returns matches for all aliens' do
+      it 'doesnt return any matches' do
         expect(scanner.detect.count).to eq 0
+      end
+
+      context 'when using partial detector with 90% threshold' do
+        it 'returns partial matches' do
+          expect(scanner.detect(SpaceInvaders::Detectors::Partial.new(90)).count).to eq 1
+        end
+      end
+
+      context 'when using partial detector with 75% threshold' do
+        it 'returns partial matches' do
+          expect(scanner.detect(SpaceInvaders::Detectors::Partial.new(75)).count).to eq 7
+        end
       end
     end
   end
