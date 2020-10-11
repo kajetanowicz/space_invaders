@@ -1,29 +1,29 @@
-# SpaceInvaders
+# Space Invaders
 
 This is the solution to the Space Invaders problem.
 
 ## Approach
 
-The algorithm for identifying Invaders on the radar sample is brute force. For
+The algorithm for identifying Invaders on the radar sample is a brute force approach. For
 each invader we scan each possible rectangle area that fits in the radar and has
 the exactly same size as the invader (represented by the `SpaceInvaders::Area` objects).
-Then for each Invader/Area pair we check if the invader is there using 2 currently available matching techniques:
-* basic - each pixel set on the invader has also be set at the same coordinate within the area
-* partial - it's similar to basic but instead if requiring that all invader's
-  pixels match it also accepts the threshold for what percentage has to match
+Then for each Invader/Area pair we check if the invader is present by using 2 currently available matching techniques:
+* basic - each pixel set on the invader has to also be set at the same coordinate within the area
+* partial - it's similar to basic but instead of requiring that all invader's
+  pixels match, it also accepts the threshold of what percentage has to match
   in order to consider invader present in that area.
 
 ## Assumptions
 
-There are also certain assumptions about how the detection should work:
+There are few assumptions about how the detection should work:
 * two or more invaders can occupy the same coordinates (overlap)
 * invaders that don't fully fit within the boundaries of the radar sample aren't detected
-* focus is more on the structure of the code rather than performance
+* the solution focuses more on the structure of the code rather than performance
 
 ## Results
-Results are returned as a list of `SpaceInvaders::Match` object. Each of those
-objects holds a reference to the invader and area on the radar sample where it
-was detected.
+Results are returned as a list of `SpaceInvaders::Match` objects. Each of those
+objects hold a reference to the invader and area on the radar sample where the
+invader was detected.
 
 
 ## How to run it
@@ -68,4 +68,3 @@ area.bottom_right
 area.map
 
 ```
-
